@@ -1,0 +1,30 @@
+{% extends 'pages/base.html' %}
+
+{% block content %}
+<article class="card my-4 mx-auto" style="max-width: 520px;">
+    <div class="card-body">
+        <h4 class="card-title mb-4">Edit Profile</h4>
+        <form action="{% url 'edit_profile' %}" method="POST">
+            {% csrf_token %}
+            {% include 'partials/alerts.html' %} 
+            <div class="form-group mb-4">
+                <label>First name</label>
+                <input type="text" name="first_name" placeholder="Type here" value="{{ user.first_name }}" class="form-control">
+            </div>
+            
+            <div class="form-group mb-4">
+                <label>Last name</label>
+                <input type="text" name="last_name" placeholder="Type here" value="{{ user.last_name }}" class="form-control">
+            </div>
+            
+            <div class="form-group mb-4">
+                <label>Email</label>
+                <input type="email" name="email" placeholder="example@gmail.com" value="{{ user.email }}" class="form-control">
+            </div>
+            
+            <button type="submit" value="Edit" class="btn btn-dark" style="float: right;"> Save </button>
+        </form>
+    </div> 
+</article>
+
+{% endblock %}

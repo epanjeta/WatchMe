@@ -1,0 +1,90 @@
+{% extends 'pages/base.html' %}
+
+{% load static %}
+
+{% block title %} | Cart {% endblock %}
+
+{% block content %}
+
+<h4 class="card-title mt-4">Cart items</h4>
+
+<div class="row">
+    
+    <aside class="col-lg-8">
+       
+            <div class="card mb-4 mt-2" style="max-width: 700px;">
+                <div class="row">
+                    <div class="col-sm d-flex align-self-center justify-content-center">
+                        <b>IMAGE</b>
+                    </div>
+                    <div class="col-sm-5 d-flex align-self-center justify-content-center">
+                        <b>TITLE</b>
+                    </div>
+                    <div class="col-sm d-flex align-self-center justify-content-center">
+                        <b>PRICE</b>
+                    </div>
+                    <div class="col-sm d-flex align-self-center justify-content-center">
+                        <b>ACTIONS</b>
+                    </div>
+                </div>
+                {% for product in products %}
+                <div class="row my-2">
+                    <div class="col-sm">
+                        <img src="{{ product.imageURL }}" style="height: 100px;
+                        display: block;
+                        margin-left: auto;
+                        margin-right: auto;">
+                    </div>
+                    <div class="col-sm-5 d-flex align-self-center justify-content-center">
+                        {{ product.title }}
+                    </div>
+                    <div class="col-sm d-flex align-self-center justify-content-center">
+                        {{ product.price }} KM
+                    </div>
+                    <div class="col-sm d-flex align-self-center justify-content-center">
+                        <a href="{% url 'remove_item' product.id %}" class="btn btn-danger"> Remove</a>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        
+    </aside>
+    
+    <aside class="col-lg-4">
+        
+            <div class="card mb-4 mt-2">
+                <div class="card-body">
+                    <h6 style="display: inline-block;">TOTAL PRICE: </h6>
+                    <div style="float: right;">
+                        {{ total }} KM
+                    </div>
+                    <br>
+                    <h6 style="display: inline-block;">DISCOUNT: </h6>
+                    <div style="float: right;">
+                        NONE
+                    </div>
+                    <br>
+                    <hr>
+                    <h6 style="display: inline-block;">TO PAY: </h6>
+                    <div style="float: right;">
+                        <b> {{ total }} KM </b>
+                    </div>
+                    <br>
+                    <hr>
+                    {% if products %}
+                    <a href="{% url 'checkout' %}" class="btn btn-dark btn-block"> Checkout </a>
+                    {% else %}
+                    <a href="{% url 'checkout' %}" class="btn btn-dark btn-block disabled"> Checkout </a>
+                    {% endif %}
+                    <a href="{% url 'home' %}" class="btn btn-light btn-block">Continue Shopping</a>
+                </div> <!-- card-body.// -->
+            </div> <!-- card.// -->
+        
+    </aside>
+</div>
+
+
+
+
+
+{% endblock %}
