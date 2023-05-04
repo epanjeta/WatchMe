@@ -34,3 +34,5 @@ The app features an online store for hand watches, with functionalities for gues
 * Ability to add new products, modify and delete existing ones
 * Ability to delete users
 * Ability to view completed purchases
+
+[Click here to view the final project document](Sigurnosni_aspekti_e-commerce_aplikacije.pdf)
